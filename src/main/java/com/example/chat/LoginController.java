@@ -10,6 +10,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+import java.sql.SQLException;
+
 public class LoginController {
 
     @FXML
@@ -20,18 +23,47 @@ public class LoginController {
 
     @FXML
     void getLogin(ActionEvent event) {
+
+        String number = phoneNumber.getText();
+        String pass = password.getText();
+
         try {
-            FXMLLoader fxmlLoader1 = new FXMLLoader(getClass().getResource("home.fxml"));
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(fxmlLoader1.load());
-            //    stage.getIcons().add(new Image(getClass().getResourceAsStream("online-course.png")));
-            stage.setTitle("SignUp");
-            stage.setScene(scene);
-            stage.setResizable(false);
-            stage.show();
-        } catch (Exception e) {
-            System.out.println(e);
+            DBUtil util = new DBUtil();
+
+            if (pass.length() >= 4 && number.length() == 11 && number.matches("\\d+")) {
+
+                if (util.logIn(number, pass)) {
+                    FXMLLoader fxmlLoader1 = new FXMLLoader(getClass().getResource("home.fxml"));
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    Scene scene = new Scene(fxmlLoader1.load());
+                    //    stage.getIcons().add(new Image(getClass().getResourceAsStream("online-course.png")));
+                    stage.setTitle("Home");
+                    stage.setScene(scene);
+                    stage.setResizable(false);
+                    stage.show();
+                } else {
+                    System.out.println("log in info is wrong");
+                    PopUpWindow.display("Error","Login info is wrong");
+                }
+            } else {
+                String warningMessage = "";
+                if (!number.matches("\\d+")) {
+                    warningMessage ="The number is in valid and length must be 11";
+                } else if (pass.length() < 4 && number.length() < 11) {
+                    warningMessage = "Number must be 11 length and password must be at lest 4 length";
+                } else if (pass.length() < 4) {
+                    warningMessage = "password must be four length. ";
+                } else if (number.length() < 11) {
+                    warningMessage = "number must be length 11.";
+                }
+                PopUpWindow.display("Error",warningMessage);
+            }
+
+        } catch (SQLException | IOException e) {
+            e.printStackTrace();
         }
+
+
     }
 
     @FXML
@@ -41,7 +73,7 @@ public class LoginController {
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene scene = new Scene(fxmlLoader1.load());
             //    stage.getIcons().add(new Image(getClass().getResourceAsStream("online-course.png")));
-            stage.setTitle("SignUp");
+            stage.setTitle("Register");
             stage.setScene(scene);
             stage.setResizable(false);
             stage.show();
