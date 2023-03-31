@@ -37,10 +37,14 @@ public class RegisterController {
             if (pass.length() >= 4 && number.length() == 11 && number.matches("\\d+")) {
 
                 if (util.register(number, name, pass)) {
-                    FXMLLoader fxmlLoader1 = new FXMLLoader(getClass().getResource("login.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
                     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    Scene scene = new Scene(fxmlLoader1.load());
+                    Scene scene = new Scene(loader.load());
+
+                    LoginController lc = loader.getController(); // communicating between controllers
+                    lc.displayWelcome("Your account has been Created. \n\t\tNow log in!"); // communicating between controllers
                     //    stage.getIcons().add(new Image(getClass().getResourceAsStream("online-course.png")));
+
                     stage.setTitle("Login");
                     stage.setScene(scene);
                     stage.setResizable(false);

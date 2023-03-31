@@ -33,9 +33,9 @@ public class LoginController {
             if (pass.length() >= 4 && number.length() == 11 && number.matches("\\d+")) {
 
                 if (util.logIn(number, pass)) {
-                    FXMLLoader fxmlLoader1 = new FXMLLoader(getClass().getResource("home.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("test.fxml"));
                     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    Scene scene = new Scene(fxmlLoader1.load());
+                    Scene scene = new Scene(loader.load());
                     //    stage.getIcons().add(new Image(getClass().getResourceAsStream("online-course.png")));
                     stage.setTitle("Home");
                     stage.setScene(scene);
@@ -69,9 +69,9 @@ public class LoginController {
     @FXML
     void goToRegisterWidow(MouseEvent event) {
         try {
-            FXMLLoader fxmlLoader1 = new FXMLLoader(getClass().getResource("register.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("register.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(fxmlLoader1.load());
+            Scene scene = new Scene(loader.load());
             //    stage.getIcons().add(new Image(getClass().getResourceAsStream("online-course.png")));
             stage.setTitle("Register");
             stage.setScene(scene);
@@ -80,6 +80,10 @@ public class LoginController {
         } catch (Exception e) {
             System.out.println(e);
         }
+    }
+
+    public void displayWelcome(String welcomeText){
+        PopUpWindow.display("Notification",welcomeText);
     }
 
 }
