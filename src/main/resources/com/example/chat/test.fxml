@@ -9,47 +9,83 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="671.0" prefWidth="805.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="706.0" prefWidth="869.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane layoutY="-1.0" prefHeight="671.0" prefWidth="68.0" style="-fx-background-color: #27323A;">
+      <Pane layoutX="310.0" layoutY="-4.0" prefHeight="712.0" prefWidth="568.0" style="-fx-background-color: #353a3a;">
          <children>
-            <ImageView fitHeight="43.0" fitWidth="43.0" layoutX="13.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+            <Pane layoutX="-1.0" prefHeight="62.0" prefWidth="575.0" style="-fx-background-color: #27323A;">
+               <children>
+                  <Label layoutX="69.0" layoutY="11.0" prefHeight="40.0" prefWidth="195.0" style="-fx-cursor: hand;" text="Rejuyan Ahmed" textFill="#ffffffde">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="40.0" fitWidth="68.0" layoutX="14.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                     <image>
+                        <Image url="@Icons/pngegg.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="27.0" fitWidth="27.0" layoutX="491.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hend;">
+                     <image>
+                        <Image url="@PngItem_2639897.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Pane layoutX="-14.0" layoutY="638.0" prefHeight="74.0" prefWidth="582.0" style="-fx-background-color: #27323A;">
+               <children>
+                  <TextField layoutX="14.0" layoutY="13.0" prefHeight="49.0" prefWidth="557.0" promptText="send message" style="-fx-cursor: hand;">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </TextField>
+                  <ImageView fitHeight="27.0" fitWidth="27.0" layoutX="541.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                     <image>
+                        <Image url="@send-message.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+      <Pane layoutY="-1.0" prefHeight="706.0" prefWidth="68.0" style="-fx-background-color: #27323A;">
+         <children>
+            <ImageView fitHeight="43.0" fitWidth="43.0" layoutX="13.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
                <image>
                   <Image url="@Icons/home.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="43.0" fitWidth="43.0" layoutX="14.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="43.0" fitWidth="43.0" layoutX="14.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
                <image>
                   <Image url="@Icons/message-icon.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="43.0" fitWidth="43.0" layoutX="14.0" layoutY="201.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="43.0" fitWidth="43.0" layoutX="14.0" layoutY="201.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
                <image>
                   <Image url="@Icons/pngegg.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="43.0" fitWidth="43.0" layoutX="11.0" layoutY="595.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="43.0" fitWidth="43.0" layoutX="13.0" layoutY="649.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
                <image>
                   <Image url="@Icons/log-out.png" />
                </image>
             </ImageView>
          </children>
       </Pane>
-      <Pane layoutX="68.0" layoutY="-4.0" prefHeight="677.0" prefWidth="243.0" style="-fx-background-color: #435055;">
+      <Pane layoutX="68.0" layoutY="-4.0" prefHeight="712.0" prefWidth="243.0" style="-fx-background-color: #435055;">
          <children>
-            <TextField layoutX="14.0" layoutY="40.0" prefHeight="34.0" prefWidth="207.0" promptText="Search" style="-fx-background-color: #f9f9f9;">
+            <TextField layoutX="14.0" layoutY="40.0" prefHeight="34.0" prefWidth="207.0" promptText="Search" style="-fx-cursor: hand;">
                <font>
                   <Font size="18.0" />
                </font>
             </TextField>
-            <ImageView fitHeight="21.0" fitWidth="19.0" layoutX="193.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="21.0" fitWidth="19.0" layoutX="193.0" layoutY="48.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
                <image>
                   <Image url="@Icons/clipart163647.png" />
                </image>
             </ImageView>
             <Line endX="121.07730102539062" endY="7.62939453125E-6" layoutX="122.0" layoutY="96.0" startX="-122.00001525878906" startY="7.62939453125E-6" stroke="#393b3d" strokeWidth="3.0" />
-            <Pane layoutY="106.0" prefHeight="62.0" prefWidth="243.0" style="-fx-background-color: #00000036;">
+            <Pane layoutY="106.0" prefHeight="62.0" prefWidth="243.0" style="-fx-cursor: hand;">
                <children>
                   <ImageView fitHeight="34.0" fitWidth="27.0" layoutX="14.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -66,43 +102,6 @@
                         <Font size="12.0" />
                      </font>
                   </Label>
-               </children>
-            </Pane>
-         </children>
-      </Pane>
-      <Pane layoutX="310.0" layoutY="-4.0" prefHeight="678.0" prefWidth="499.0" style="-fx-background-color: #353a3a;">
-         <children>
-            <Pane prefHeight="62.0" prefWidth="499.0" style="-fx-background-color: #27323A;">
-               <children>
-                  <Label layoutX="69.0" layoutY="11.0" prefHeight="40.0" prefWidth="195.0" text="Rejuyan Ahmed" textFill="#ffffffde">
-                     <font>
-                        <Font size="19.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="40.0" fitWidth="68.0" layoutX="14.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Icons/pngegg.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="27.0" fitWidth="27.0" layoutX="373.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@PngItem_2639897.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
-            <Pane layoutY="602.0" prefHeight="62.0" prefWidth="499.0" style="-fx-background-color: #27323A;">
-               <children>
-                  <TextField layoutY="10.0" prefHeight="49.0" prefWidth="499.0" promptText="send message" style="-fx-background-color: #f9f9f9;">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </TextField>
-                  <ImageView fitHeight="27.0" fitWidth="27.0" layoutX="458.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@send-message.png" />
-                     </image>
-                  </ImageView>
                </children>
             </Pane>
          </children>
