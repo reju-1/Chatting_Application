@@ -1,4 +1,4 @@
-package com.example.chat;
+package com.example.chat.model;
 
 import java.sql.*;
 
@@ -7,7 +7,7 @@ public class DBUtil {
 
     private Connection conn;
 
-    DBUtil() throws SQLException {
+    public DBUtil() throws SQLException {
         conn = DriverManager.getConnection("jdbc:mysql://localhost/Chat_DB", "root", "");
     }
 

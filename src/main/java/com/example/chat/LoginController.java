@@ -1,5 +1,6 @@
 package com.example.chat;
 
+import com.example.chat.model.DBUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -42,21 +43,22 @@ public class LoginController {
                     stage.setResizable(false);
                     stage.show();
                 } else {
-                    System.out.println("log in info is wrong");
-                    PopUpWindow.display("Error","Login info is wrong");
+                    PopUpWindow.display("Error", "Login info is wrong");
                 }
             } else {
                 String warningMessage = "";
-                if (!number.matches("\\d+")) {
-                    warningMessage ="The number is in valid and length must be 11";
+                if (number.length() == 0 && pass.length() == 0) {
+                    warningMessage = "Fields can't be empty";
+                } else if (!number.matches("\\d+")) {
+                    warningMessage = "The number is in valid and length must be 11";
                 } else if (pass.length() < 4 && number.length() < 11) {
                     warningMessage = "Number must be 11 length and password must be at lest 4 length";
                 } else if (pass.length() < 4) {
                     warningMessage = "password must be four length. ";
-                } else if (number.length() < 11) {
+                } else if (number.length() != 11) {
                     warningMessage = "number must be length 11.";
                 }
-                PopUpWindow.display("Error",warningMessage);
+                PopUpWindow.display("Error", warningMessage);
             }
 
         } catch (SQLException | IOException e) {

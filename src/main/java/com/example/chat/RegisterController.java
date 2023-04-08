@@ -1,5 +1,6 @@
 package com.example.chat;
 
+import com.example.chat.model.DBUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -56,8 +57,8 @@ public class RegisterController {
                     warningMessage = "Number must be 11 length and password must be at lest 4 length";
                 } else if (pass.length() < 4) {
                     warningMessage = "password must be four length. ";
-                } else if (number.length() < 11) {
-                    warningMessage = "number must be length 11.";
+                } else if (number.length() != 11) {
+                    warningMessage = "number must be length of 11.";
                 }else if (name.length()<1){
                     warningMessage ="invalid name";
                 }
