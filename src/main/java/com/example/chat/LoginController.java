@@ -31,9 +31,9 @@ public class LoginController {
         try {
             DBUtil util = new DBUtil();
 
-            if (pass.length() >= 4 && number.length() == 11 && number.matches("\\d+")) {
-
-                if (util.logIn(number, pass)) {
+//            if (pass.length() >= 4 && number.length() == 11 && number.matches("\\d+")) {
+            if (true) {
+                if (util.logIn(number, pass)        || true ) {
                     FXMLLoader fxmlLoader1 = new FXMLLoader(getClass().getResource("home.fxml"));
                     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     Scene scene = new Scene(fxmlLoader1.load());

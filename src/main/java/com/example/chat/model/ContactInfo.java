@@ -1,9 +1,16 @@
 package com.example.chat.model;
 
-public class Contact {
+public class ContactInfo {
     private String number;
     private String name;
     private String imageUrl;
+
+    public ContactInfo(String number, String name, String imageUrl) {
+        this.number = number;
+        this.name = name;
+        this.imageUrl = imageUrl;
+    }
+
 
     public String getNumber() {
         return number;

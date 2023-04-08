@@ -57,7 +57,38 @@
             </ImageView>
             <ScrollPane layoutY="70.0" prefHeight="612.0" prefWidth="348.0" style="-fx-background-color: #27323A;">
                <content>
-                  <VBox prefHeight="605.0" prefWidth="346.0" style="-fx-background-color: #435055;" />
+                  <VBox prefHeight="605.0" prefWidth="346.0" style="-fx-background-color: #435055;">
+                     <children>
+                        <HBox prefHeight="75.0" prefWidth="346.0" style="-fx-background-color: #0d1416;">
+                           <children>
+                              <ImageView fitHeight="50.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true" styleClass="image-hover">
+                                 <image>
+                                    <Image url="@images/prifile.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets left="10.0" top="10.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <Label prefHeight="26.0" prefWidth="186.0" text="Rejuyan Ahmed" textFill="#ffffffde">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="20.0" top="20.0" />
+                                 </HBox.margin>
+                                 <padding>
+                                    <Insets left="5.0" top="5.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets top="5.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children></VBox>
                </content>
             </ScrollPane>
          </children>
