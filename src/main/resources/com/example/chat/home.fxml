@@ -1,14 +1,114 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.chat.HomeController"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="875.0" style="-fx-background-color: #282e33;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane prefHeight="400.0" prefWidth="75.0" style="-fx-background-color: #18191d;">
+         <children>
+            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="11.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/chat.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="11.0" layoutY="154.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/friends.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="11.0" layoutY="231.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/settings.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="11.0" layoutY="595.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/logout.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="48.0" fitWidth="48.0" layoutX="15.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/menu-bar.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <AnchorPane prefHeight="675.0" prefWidth="354.0" style="-fx-background-color: #282e33;">
+         <children>
+            <TextField layoutX="14.0" layoutY="23.0" prefHeight="32.0" prefWidth="274.0" promptText="Search">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </TextField>
+            <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="295.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/search.png" />
+               </image>
+            </ImageView>
+            <ScrollPane layoutY="70.0" prefHeight="604.0" prefWidth="353.0">
+               <content>
+                  <VBox prefHeight="599.0" prefWidth="350.0" style="-fx-background-color: #282e33;" />
+               </content>
+            </ScrollPane>
+         </children>
+      </AnchorPane>
+      <VBox prefHeight="675.0" prefWidth="449.0">
+         <children>
+            <Pane prefHeight="71.0" prefWidth="448.0" style="-fx-background-color: #282e33;">
+               <children>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="14.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/prifile.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="368.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/information.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="80.0" layoutY="21.0" prefHeight="26.0" prefWidth="274.0" text="Rejuyan Ahmed" textFill="#fafafa">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <ScrollPane prefHeight="543.0" prefWidth="448.0">
+               <content>
+                  <VBox prefHeight="535.0" prefWidth="446.0" style="-fx-background-color: #18191d;" />
+               </content>
+            </ScrollPane>
+            <HBox prefHeight="73.0" prefWidth="449.0" style="-fx-background-color: #282e33;">
+               <children>
+                  <TextField prefHeight="45.0" prefWidth="376.0" promptText="Write message">
+                     <HBox.margin>
+                        <Insets left="5.0" top="10.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </TextField>
+                  <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/send-message.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="18.0" top="12.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</HBox>
