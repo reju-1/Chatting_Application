@@ -1,9 +1,13 @@
 package com.example.chat;
 
 import com.example.chat.model.ContactInfo;
+import com.example.chat.model.MessageInfo;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -18,16 +22,24 @@ public class HomeController implements Initializable {
     @FXML
     private VBox contactVbox;
 
+    @FXML
+    private VBox messageVbox;
+
+    @FXML
+    private TextField textInfo;
+
+    @FXML
+    private Label name;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        List<ContactInfo> l = new ArrayList<>(getContactInfo());
 
-        for (int i= 0; i<l.size(); i++){
+        List<ContactInfo> l = getContactInfo();
+        for (int i = 0; i < l.size(); i++) {
 
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("contact.fxml"));
 
-            System.out.printf(l.get(i).getName());
             try {
                 HBox hBox = fxmlLoader.load();
 
@@ -43,7 +55,6 @@ public class HomeController implements Initializable {
     }
 
 
-
     // database Query
     private List<ContactInfo> getContactInfo() {
 
@@ -53,10 +64,46 @@ public class HomeController implements Initializable {
         info.add(new ContactInfo("0187", "Refat", "xyz.png"));
         info.add(new ContactInfo("0187", "Haydar", "xyz.png"));
         info.add(new ContactInfo("0187", "asif", "xyz.png"));
+        info.add(new ContactInfo("0187", "Refat", "xyz.png"));
 
-        System.out.println("hi");;
 
         return info;
     }
+
+    @FXML
+    void selectedContact(MouseEvent event) {
+        name.setText("Name Changed");
+        System.out.println("changi name");
+
+    }
+
+    @FXML
+    void sendMassage(MouseEvent event) {
+
+        String text = textInfo.getText();
+
+        if (text.length() !=0){
+            String sender = "Rejuyan Ahmde";
+            String time = "03/04/2023";
+            MessageInfo messageInfo = new MessageInfo(sender,time,text);
+
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("message.fxml"));
+
+            try {
+                HBox hBox = fxmlLoader.load();
+
+                Message msg = fxmlLoader.getController();
+                msg.generateMessage(messageInfo);
+                messageVbox.getChildren().add(hBox);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+    }
+
 
 }

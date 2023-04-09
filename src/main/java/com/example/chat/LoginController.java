@@ -34,9 +34,9 @@ public class LoginController {
 //            if (pass.length() >= 4 && number.length() == 11 && number.matches("\\d+")) {
             if (true) {
                 if (util.logIn(number, pass)        || true ) {
-                    FXMLLoader fxmlLoader1 = new FXMLLoader(getClass().getResource("home.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("home.fxml"));
                     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    Scene scene = new Scene(fxmlLoader1.load());
+                    Scene scene = new Scene(fxmlLoader.load());
                     //    stage.getIcons().add(new Image(getClass().getResourceAsStream("online-course.png")));
                     stage.setTitle("Home");
                     stage.setScene(scene);

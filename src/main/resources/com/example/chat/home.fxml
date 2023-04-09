@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -12,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="875.0" style="-fx-background-color: #282e33;" stylesheets="@stylesheet/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="875.0" style="-fx-background-color: #282e33;" stylesheets="@stylesheet/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.chat.HomeController">
    <children>
       <Pane prefHeight="675.0" prefWidth="63.0" style="-fx-background-color: #27323A;">
          <children>
@@ -43,7 +44,7 @@
             </ImageView>
          </children>
       </Pane>
-      <AnchorPane prefHeight="675.0" prefWidth="354.0" style="-fx-background-color: #282e33;">
+      <AnchorPane prefHeight="675.0" prefWidth="355.0" style="-fx-background-color: #282e33;">
          <children>
             <TextField layoutX="14.0" layoutY="23.0" prefHeight="32.0" prefWidth="274.0" promptText="Search">
                <font>
@@ -57,9 +58,9 @@
             </ImageView>
             <ScrollPane layoutY="70.0" prefHeight="612.0" prefWidth="348.0" style="-fx-background-color: #27323A;">
                <content>
-                  <VBox prefHeight="605.0" prefWidth="346.0" style="-fx-background-color: #435055;">
+                  <VBox fx:id="contactVbox" prefHeight="605.0" prefWidth="346.0" style="-fx-background-color: #435055;">
                      <children>
-                        <HBox prefHeight="75.0" prefWidth="346.0" style="-fx-background-color: #0d1416;">
+                        <HBox onMouseClicked="#selectedContact" prefHeight="75.0" prefWidth="330.0" style="-fx-background-color: #282e33;" stylesheets="@stylesheet/style.css">
                            <children>
                               <ImageView fitHeight="50.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true" styleClass="image-hover">
                                  <image>
@@ -85,8 +86,12 @@
                               <Insets top="5.0" />
                            </padding>
                            <VBox.margin>
-                              <Insets top="5.0" />
+                              <Insets top="3.0" />
                            </VBox.margin>
+                           <styleClass>
+                              <String fx:value="contact" />
+                              <String fx:value="margin-top-bottom" />
+                           </styleClass>
                         </HBox>
                      </children></VBox>
                </content>
@@ -107,7 +112,7 @@
                         <Image url="@images/information.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="80.0" layoutY="21.0" prefHeight="26.0" prefWidth="274.0" text="Rejuyan Ahmed" textFill="#fafafa">
+                  <Label fx:id="name" layoutX="80.0" layoutY="21.0" prefHeight="26.0" prefWidth="274.0" text="Rejuyan Ahmed" textFill="#fafafa">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -116,12 +121,12 @@
             </Pane>
             <ScrollPane prefHeight="535.0" prefWidth="355.0" style="-fx-background-color: #27323A;">
                <content>
-                  <VBox prefHeight="530.0" prefWidth="440.0" style="-fx-background-color: #353a3a;" />
+                  <VBox fx:id="messageVbox" alignment="BOTTOM_LEFT" prefHeight="530.0" prefWidth="440.0" style="-fx-background-color: #353a3a;" />
                </content>
             </ScrollPane>
             <HBox prefHeight="81.0" prefWidth="442.0" style="-fx-background-color: #27323A;">
                <children>
-                  <TextField prefHeight="45.0" prefWidth="376.0" promptText="Write message">
+                  <TextField fx:id="textInfo" prefHeight="45.0" prefWidth="376.0" promptText="Write message">
                      <HBox.margin>
                         <Insets left="5.0" top="10.0" />
                      </HBox.margin>
@@ -129,7 +134,7 @@
                         <Font size="15.0" />
                      </font>
                   </TextField>
-                  <ImageView fitHeight="35.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" styleClass="image-hover">
+                  <ImageView fitHeight="35.0" fitWidth="30.0" onMouseClicked="#sendMassage" pickOnBounds="true" preserveRatio="true" styleClass="image-hover">
                      <image>
                         <Image url="@images/send-message.png" />
                      </image>
