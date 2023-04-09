@@ -4,8 +4,8 @@
     -fx-cursor: hand;
 }
 .margin-top-bottom {
-    -fx-margin-top: 5px;
-    -fx-margin-bottom: 5px;
+    -fx-margin-top: 0px;
+    -fx-margin-bottom: 0px;
 }
 
 .contact:hover {
