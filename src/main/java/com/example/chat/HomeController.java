@@ -9,8 +9,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -21,6 +19,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class HomeController implements Initializable {
+
+    String userName;
 
     @FXML
     private VBox contactVbox;
@@ -74,10 +74,11 @@ public class HomeController implements Initializable {
     }
 
     @FXML
-    void selectedContact(MouseEvent event) {
-        name.setText("Name Changed");
-        System.out.println("changi name");
+    void selectedContact() {
+        name.setText(userName);
+        System.out.println(userName);
 
+        // message loading
     }
 
     @FXML
