@@ -5,12 +5,18 @@ import com.example.chat.model.MessageInfo;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -87,10 +93,10 @@ public class HomeController implements Initializable {
         String text = textInfo.getText();
         textInfo.setText("");
 
-        if (text.length() !=0){
+        if (text.length() != 0) {
             String sender = "Rejuyan Ahmde";
             String time = "03/04/2023";
-            MessageInfo messageInfo = new MessageInfo(sender,time,text);
+            MessageInfo messageInfo = new MessageInfo(sender, time, text);
 
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("message.fxml"));
@@ -113,8 +119,36 @@ public class HomeController implements Initializable {
     @FXML
     void onEnter(KeyEvent event) {
 
-        if (event.getCode() == KeyCode.ENTER){
+        if (event.getCode() == KeyCode.ENTER) {
             sendMassage();
+        }
+
+    }
+
+    @FXML
+    void logOut(MouseEvent event) {
+
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("login.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Logout");
+        alert.setHeaderText("Do you want to logout");
+        //   alert.setContentText("Press ok");
+
+        if (alert.showAndWait().get() == ButtonType.OK) {
+
+            try {
+
+                Scene scene = new Scene(fxmlLoader.load());
+                stage.setTitle("Login");
+                stage.setScene(scene);
+                stage.setResizable(false);
+                stage.show();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
     }

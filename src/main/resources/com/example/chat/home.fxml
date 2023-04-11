@@ -32,7 +32,7 @@
                   <Image url="@images/settings.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="50.0" fitWidth="42.0" layoutX="11.0" layoutY="595.0" pickOnBounds="true" preserveRatio="true" styleClass="image-hover">
+            <ImageView fitHeight="50.0" fitWidth="42.0" layoutX="11.0" layoutY="595.0" onMouseClicked="#logOut" pickOnBounds="true" preserveRatio="true" styleClass="image-hover">
                <image>
                   <Image url="@images/logout.jpg" />
                </image>
@@ -121,7 +121,7 @@
             </Pane>
             <ScrollPane prefHeight="535.0" prefWidth="355.0" style="-fx-background-color: #27323A;" vvalue="1.0" VBox.vgrow="ALWAYS">
                <content>
-                  <VBox fx:id="messageVbox" alignment="BOTTOM_LEFT" prefHeight="528.0" prefWidth="440.0" spacing="3.0" style="-fx-background-color: #353a3a;" />
+                  <VBox fx:id="messageVbox" alignment="BOTTOM_LEFT" prefHeight="528.0" prefWidth="440.0" spacing="5.0" style="-fx-background-color: #353a3a;" />
                </content>
             </ScrollPane>
             <HBox prefHeight="81.0" prefWidth="442.0" style="-fx-background-color: #27323A;">

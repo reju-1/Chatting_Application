@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="675.0" prefWidth="875.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.chat.LoginController">
+<AnchorPane prefHeight="675.0" prefWidth="875.0" style="-fx-background-color: #282e33;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.chat.LoginController">
    <children>
       <ImageView fitHeight="375.0" fitWidth="204.0" layoutX="60.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -21,17 +21,17 @@
             <Image url="@images/logo.png" />
          </image>
       </ImageView>
-      <Label layoutX="364.0" layoutY="225.0" text="Number">
+      <Label layoutX="364.0" layoutY="225.0" text="Number" textFill="WHITE">
          <font>
             <Font size="19.0" />
          </font>
       </Label>
-      <Label layoutX="364.0" layoutY="304.0" text="Password">
+      <Label layoutX="364.0" layoutY="304.0" text="Password" textFill="WHITE">
          <font>
             <Font size="19.0" />
          </font>
       </Label>
-      <Label layoutX="507.0" layoutY="171.0" text="LogIn">
+      <Label layoutX="507.0" layoutY="171.0" text="LogIn" textFill="WHITE">
          <font>
             <Font size="30.0" />
          </font>
@@ -46,12 +46,12 @@
             <Font size="19.0" />
          </font>
       </PasswordField>
-      <Button layoutX="503.0" layoutY="369.0" mnemonicParsing="false" onAction="#getLogin" style="-fx-background-color: #0ee0a7; -fx-cursor: hand;" text="Login">
+      <Button layoutX="503.0" layoutY="369.0" mnemonicParsing="false" onAction="#getLogin" style="-fx-background-color: #0ee0a7; -fx-cursor: hand;" text="Login" textFill="WHITE">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Label layoutX="401.0" layoutY="433.0" text="Don't have account?">
+      <Label layoutX="401.0" layoutY="433.0" text="Don't have account?" textFill="WHITE">
          <font>
             <Font size="17.0" />
          </font>
