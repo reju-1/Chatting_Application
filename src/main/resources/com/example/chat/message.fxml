@@ -4,11 +4,11 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox prefHeight="62.0" prefWidth="385.0" style="-fx-background-color: #808080;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.chat.Message">
+<HBox prefHeight="50.0" prefWidth="385.0" style="-fx-background-color: #808080;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.chat.Message">
    <children>
       <Label fx:id="sender" prefHeight="26.0" prefWidth="160.0" text="Sender" textFill="#fafafa" />
       <Label fx:id="time" layoutX="350.0" layoutY="10.0" prefHeight="26.0" prefWidth="168.0" text="Time" textFill="#fafafa" />
-      <Label fx:id="messageText" layoutX="10.0" layoutY="10.0" prefHeight="62.0" prefWidth="311.0" text="Message" textFill="#fafafa">
+      <Label fx:id="messageText" layoutX="10.0" layoutY="10.0" minHeight="50.0" prefHeight="50.0" prefWidth="311.0" text="Message" textFill="#fafafa">
          <font>
             <Font size="14.0" />
          </font>

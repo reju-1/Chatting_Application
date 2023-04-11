@@ -58,7 +58,7 @@
             </ImageView>
             <ScrollPane layoutY="70.0" prefHeight="612.0" prefWidth="348.0" style="-fx-background-color: #27323A;">
                <content>
-                  <VBox fx:id="contactVbox" prefHeight="605.0" prefWidth="346.0" style="-fx-background-color: #435055;">
+                  <VBox fx:id="contactVbox" prefHeight="605.0" prefWidth="346.0" spacing="2.0" style="-fx-background-color: #435055;" VBox.vgrow="ALWAYS">
                      <children>
                         <HBox onMouseClicked="#selectedContact" prefHeight="75.0" prefWidth="330.0" style="-fx-background-color: #282e33;" stylesheets="@stylesheet/style.css">
                            <children>
@@ -119,14 +119,14 @@
                   </Label>
                </children>
             </Pane>
-            <ScrollPane prefHeight="535.0" prefWidth="355.0" style="-fx-background-color: #27323A;">
+            <ScrollPane prefHeight="535.0" prefWidth="355.0" style="-fx-background-color: #27323A;" vvalue="1.0" VBox.vgrow="ALWAYS">
                <content>
-                  <VBox fx:id="messageVbox" alignment="BOTTOM_LEFT" prefHeight="530.0" prefWidth="440.0" style="-fx-background-color: #353a3a;" />
+                  <VBox fx:id="messageVbox" alignment="BOTTOM_LEFT" prefHeight="528.0" prefWidth="440.0" spacing="3.0" style="-fx-background-color: #353a3a;" />
                </content>
             </ScrollPane>
             <HBox prefHeight="81.0" prefWidth="442.0" style="-fx-background-color: #27323A;">
                <children>
-                  <TextField fx:id="textInfo" prefHeight="45.0" prefWidth="376.0" promptText="Write message">
+                  <TextField fx:id="textInfo" onKeyPressed="#onEnter" prefHeight="45.0" prefWidth="376.0" promptText="Write message">
                      <HBox.margin>
                         <Insets left="5.0" top="10.0" />
                      </HBox.margin>

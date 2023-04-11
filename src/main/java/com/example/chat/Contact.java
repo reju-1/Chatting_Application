@@ -4,6 +4,7 @@ import com.example.chat.model.ContactInfo;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 public class Contact {
 
@@ -19,6 +20,14 @@ public class Contact {
         //    image.setImage(img);
         name.setText(info.getName());
 
+    }
+
+    @FXML
+    void selectContract(MouseEvent event) {
+
+        System.out.println(name.getText());
+
+        // pass the name
     }
 
 }

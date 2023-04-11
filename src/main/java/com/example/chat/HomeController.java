@@ -7,7 +7,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -78,9 +81,10 @@ public class HomeController implements Initializable {
     }
 
     @FXML
-    void sendMassage(MouseEvent event) {
+    void sendMassage() {
 
         String text = textInfo.getText();
+        textInfo.setText("");
 
         if (text.length() !=0){
             String sender = "Rejuyan Ahmde";
@@ -101,6 +105,15 @@ public class HomeController implements Initializable {
                 e.printStackTrace();
             }
 
+        }
+
+    }
+
+    @FXML
+    void onEnter(KeyEvent event) {
+
+        if (event.getCode() == KeyCode.ENTER){
+            sendMassage();
         }
 
     }
