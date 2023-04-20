@@ -18,6 +18,9 @@ public class Contact {
     private ImageView image;
 
     @FXML
+    private Label id;
+
+    @FXML
     private Label name;
 
     public void setInfo(ContactInfo info){
@@ -25,6 +28,7 @@ public class Contact {
         //    Image img = new Image(getClass().getResourceAsStream(info.imgSrc));
         //    image.setImage(img);
         name.setText(info.getName());
+        id.setText(info.getNumber());
 
     }
 
@@ -37,7 +41,8 @@ public class Contact {
             Scene scene = new Scene(loader.load());
 
             HomeController controller = loader.getController();
-            controller.userName = name.getText();
+            controller.receiverName = name.getText();
+            controller.receiverId = id.getText();
             controller.selectedContact();
 
             stage.setScene(scene);

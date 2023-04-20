@@ -11,7 +11,7 @@
    <children>
       <VBox maxHeight="-Infinity" prefHeight="72.0" prefWidth="385.0">
          <children>
-            <Label fx:id="sender" text="Label" textFill="WHITE" underline="true">
+            <Label fx:id="receiver" text="Label" textFill="WHITE" underline="true">
                <font>
                   <Font size="14.0" />
                </font>

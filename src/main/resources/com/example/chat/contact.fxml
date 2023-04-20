@@ -18,7 +18,7 @@
             <Insets left="10.0" top="10.0" />
          </HBox.margin>
       </ImageView>
-      <Label fx:id="name" prefHeight="26.0" prefWidth="186.0" text="Rejuyan Ahmed" textFill="#ffffffde">
+      <Label fx:id="name" prefHeight="26.0" prefWidth="232.0" text="Rejuyan Ahmed" textFill="#ffffffde">
          <font>
             <Font size="15.0" />
          </font>
@@ -29,6 +29,7 @@
             <Insets left="5.0" top="5.0" />
          </padding>
       </Label>
+      <Label fx:id="id" prefHeight="16.0" prefWidth="21.0" textFill="#f9f2f2" visible="false" />
    </children>
    <padding>
       <Insets top="5.0" />

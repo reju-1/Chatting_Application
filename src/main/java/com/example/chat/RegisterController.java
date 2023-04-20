@@ -28,7 +28,6 @@ public class RegisterController {
     @FXML
     void getRegister(ActionEvent event) {
 
-        try {
             DBUtil util = new DBUtil();
 
             String name = userName.getText();
@@ -40,7 +39,12 @@ public class RegisterController {
                 if (util.register(number, name, pass)) {
                     FXMLLoader fxmlLoader1 = new FXMLLoader(getClass().getResource("login.fxml"));
                     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    Scene scene = new Scene(fxmlLoader1.load());
+                    Scene scene = null;
+                    try {
+                        scene = new Scene(fxmlLoader1.load());
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
                     //    stage.getIcons().add(new Image(getClass().getResourceAsStream("online-course.png")));
                     stage.setTitle("Login");
                     stage.setScene(scene);
@@ -65,9 +69,7 @@ public class RegisterController {
                 PopUpWindow.display("Error",warningMessage);
             }
 
-        } catch (SQLException | IOException e) {
-            e.printStackTrace();
-        }
+
     }
 
     @FXML

@@ -28,42 +28,43 @@ public class LoginController {
         String number = phoneNumber.getText();
         String pass = password.getText();
 
-        try {
-            DBUtil util = new DBUtil();
+        DBUtil util = new DBUtil();
 
-            if (pass.length() >= 4 && number.length() == 11 && number.matches("\\d+") || true) {
-                if (util.logIn(number, pass) || true) {
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("home.fxml"));
-                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    Scene scene = new Scene(fxmlLoader.load());
-                    //    stage.getIcons().add(new Image(getClass().getResourceAsStream("online-course.png")));
-                    stage.setTitle("Home");
-                    stage.setScene(scene);
-                    stage.setResizable(false);
-                    stage.show();
-                } else {
-                    PopUpWindow.display("Error", "Login info is wrong");
+        if (pass.length() >= 4 && number.length() == 11 && number.matches("\\d+") || true) {
+            if (util.logIn(number, pass) || true) {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("home.fxml"));
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Scene scene = null;
+                try {
+                    scene = new Scene(fxmlLoader.load());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
                 }
+
+                HomeController hc = fxmlLoader.getController();
+                hc.senderId = number;
+                stage.setTitle("Home");
+                stage.setScene(scene);
+                stage.setResizable(false);
+                stage.show();
             } else {
-                String warningMessage = "";
-                if (number.length() == 0 && pass.length() == 0) {
-                    warningMessage = "Fields can't be empty";
-                } else if (!number.matches("\\d+")) {
-                    warningMessage = "The number is in valid and length must be 11";
-                } else if (pass.length() < 4 && number.length() < 11) {
-                    warningMessage = "Number must be 11 length and password must be at lest 4 length";
-                } else if (pass.length() < 4) {
-                    warningMessage = "password must be four length. ";
-                } else if (number.length() != 11) {
-                    warningMessage = "number must be length 11.";
-                }
-                PopUpWindow.display("Error", warningMessage);
+                PopUpWindow.display("Error", "Login info is wrong");
             }
-
-        } catch (SQLException | IOException e) {
-            e.printStackTrace();
+        } else {
+            String warningMessage = "";
+            if (number.length() == 0 && pass.length() == 0) {
+                warningMessage = "Fields can't be empty";
+            } else if (!number.matches("\\d+")) {
+                warningMessage = "The number is in valid and length must be 11";
+            } else if (pass.length() < 4 && number.length() < 11) {
+                warningMessage = "Number must be 11 length and password must be at lest 4 length";
+            } else if (pass.length() < 4) {
+                warningMessage = "password must be four length. ";
+            } else if (number.length() != 11) {
+                warningMessage = "number must be length 11.";
+            }
+            PopUpWindow.display("Error", warningMessage);
         }
-
 
     }
 

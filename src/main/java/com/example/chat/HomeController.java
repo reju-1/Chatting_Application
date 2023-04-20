@@ -1,6 +1,7 @@
 package com.example.chat;
 
 import com.example.chat.model.ContactInfo;
+import com.example.chat.model.DBUtil;
 import com.example.chat.model.MessageInfo;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,13 +21,20 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class HomeController implements Initializable {
 
-    String userName;
+    String senderId;
+    String receiverId;
+    String receiverName;
 
     @FXML
     private VBox contactVbox;
@@ -43,6 +51,9 @@ public class HomeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+
+//        DBUtil util = new DBUtil();
+//        List<ContactInfo> l = util.getFriendList(senderId);
         List<ContactInfo> l = getContactInfo();
         for (int i = 0; i < l.size(); i++) {
 
@@ -61,6 +72,7 @@ public class HomeController implements Initializable {
                 e.printStackTrace();
             }
         }
+
     }
 
 
@@ -81,8 +93,9 @@ public class HomeController implements Initializable {
 
     @FXML
     void selectedContact() {
-        name.setText(userName);
-        System.out.println(userName);
+        name.setText(receiverName);
+        System.out.println(receiverName);
+        System.out.println(receiverId);
 
         // message loading
     }
@@ -91,12 +104,14 @@ public class HomeController implements Initializable {
     void sendMassage() {
 
         String text = textInfo.getText();
-        textInfo.setText("");
+        textInfo.clear();
 
         if (text.length() != 0) {
-            String sender = "Rejuyan Ahmde";
-            String time = "03/04/2023";
-            MessageInfo messageInfo = new MessageInfo(sender, time, text);
+
+            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            Date date = new Date();
+            String time = dateFormat.format(date);
+            MessageInfo messageInfo = new MessageInfo(senderId, receiverId, receiverName, time, text);
 
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("message.fxml"));
@@ -107,6 +122,9 @@ public class HomeController implements Initializable {
                 Message msg = fxmlLoader.getController();
                 msg.generateMessage(messageInfo);
                 messageVbox.getChildren().add(hBox);
+
+                // database and networking qe
+
 
             } catch (IOException e) {
                 e.printStackTrace();

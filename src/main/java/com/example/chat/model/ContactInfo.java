@@ -11,6 +11,12 @@ public class ContactInfo {
         this.imageUrl = imageUrl;
     }
 
+    public ContactInfo(String number, String name) {
+        this.number = number;
+        this.name = name;
+        this.imageUrl = null;
+    }
+
 
     public String getNumber() {
         return number;

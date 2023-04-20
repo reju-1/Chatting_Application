@@ -11,13 +11,13 @@ public class Message {
     private Text messageText;
 
     @FXML
-    private Label sender;
+    private Label receiver;
 
     @FXML
     private Label time;
 
     public void generateMessage(MessageInfo info) {
-        sender.setText(info.sender);
+        receiver.setText(info.receiverName);
         time.setText(info.time);
         messageText.setText(info.messageText);
     }
