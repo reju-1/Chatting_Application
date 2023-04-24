@@ -7,17 +7,18 @@ import java.util.List;
 
 public class DBUtil {
 
-    public boolean logIn(String number, String password) {
+    public String logIn(String number, String password) {
         try {
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/Chat_DB", "root", "");
             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM user WHERE number = ? AND password = ?");
             stmt.setString(1, number);
             stmt.setString(2, password);
             ResultSet rs = stmt.executeQuery();
-            return rs.next();
+            rs.next();
+            return rs.getString("name");
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
+            return "";
         }
     }
 
@@ -69,5 +70,53 @@ public class DBUtil {
         return list;
     }
 
+    public boolean writeMessageInDatabase(MessageInfo info) {
+
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/Chat_DB", "root", "");
+            String query = "INSERT INTO `messages` (`sender`, `receiver`, `time`, `message_text`) VALUES (?, ?, ?, ?)";
+            PreparedStatement stm = conn.prepareStatement(query);
+            stm.setString(1, info.senderId);
+            stm.setString(2, info.receiverId);
+            stm.setString(3, info.time);
+            stm.setString(4, info.messageText);
+            stm.executeUpdate();
+
+            stm.close();
+            conn.close();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public ArrayList<MessageInfo> getMessages(String senderId, String receiverId) {
+        ArrayList<MessageInfo> messages = new ArrayList<>();
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/Chat_DB", "root", "");
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM `messages` WHERE sender = ? AND receiver = ?");
+            stmt.setString(1, senderId);
+            stmt.setString(2, receiverId);
+            ResultSet rs = stmt.executeQuery();
+
+
+            while (rs.next()) {
+                String sName = rs.getString(1);
+                String sId = rs.getString(2);
+                String rName = rs.getString(3);
+                String rId = rs.getString(4);
+                String time = rs.getString(5);
+                String message = rs.getString(6);
+                MessageInfo info = new MessageInfo(sName, sId, rName, rId, time, message);
+                messages.add(info);
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return messages;
+    }
 
 }

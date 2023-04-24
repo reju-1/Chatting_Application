@@ -19,9 +19,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.io.IOException;
+import java.io.*;
+import java.net.Socket;
+import java.net.SocketException;
 import java.net.URL;
-import java.sql.SQLException;
+import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
@@ -32,8 +34,13 @@ import java.util.ResourceBundle;
 
 public class HomeController implements Initializable {
 
+    BufferedReader reader;
+    BufferedWriter writer;
+
     String senderId;
     String receiverId;
+
+    String senderName;
     String receiverName;
 
     @FXML
@@ -54,6 +61,8 @@ public class HomeController implements Initializable {
 
 //        DBUtil util = new DBUtil();
 //        List<ContactInfo> l = util.getFriendList(senderId);
+//        connectToServer(); // creating socket
+
         List<ContactInfo> l = getContactInfo();
         for (int i = 0; i < l.size(); i++) {
 
@@ -81,11 +90,11 @@ public class HomeController implements Initializable {
 
         List<ContactInfo> info = new ArrayList<>();
 
-        info.add(new ContactInfo("0187", "Reju", "xyz.png"));
-        info.add(new ContactInfo("0187", "Refat", "xyz.png"));
-        info.add(new ContactInfo("0187", "Haydar", "xyz.png"));
+        info.add(new ContactInfo("01872088111", "Reju", "xyz.png"));
+        info.add(new ContactInfo("8465132", "Refat", "xyz.png"));
+        info.add(new ContactInfo("10256565", "Haydar", "xyz.png"));
         info.add(new ContactInfo("0187", "asif", "xyz.png"));
-        info.add(new ContactInfo("0187", "Refat", "xyz.png"));
+        info.add(new ContactInfo("4165325", "Refat", "xyz.png"));
 
 
         return info;
@@ -98,6 +107,10 @@ public class HomeController implements Initializable {
         System.out.println(receiverId);
 
         // message loading
+        DBUtil util = new DBUtil();
+        ArrayList<MessageInfo> info = util.getMessages(senderId,receiverId);
+
+
     }
 
     @FXML
@@ -108,10 +121,7 @@ public class HomeController implements Initializable {
 
         if (text.length() != 0) {
 
-            DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-            Date date = new Date();
-            String time = dateFormat.format(date);
-            MessageInfo messageInfo = new MessageInfo(senderId, receiverId, receiverName, time, text);
+            MessageInfo messageInfo = new MessageInfo(senderId, senderName, receiverId, receiverName, text);
 
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("message.fxml"));
@@ -123,7 +133,7 @@ public class HomeController implements Initializable {
                 msg.generateMessage(messageInfo);
                 messageVbox.getChildren().add(hBox);
 
-                // database and networking qe
+                sendThroughNetwork(messageInfo);
 
 
             } catch (IOException e) {
@@ -168,6 +178,64 @@ public class HomeController implements Initializable {
                 e.printStackTrace();
             }
         }
+
+    }
+
+    void connectToServer() {
+        try {
+            Socket socket = new Socket("localhost", 6000);
+
+            OutputStreamWriter o = new OutputStreamWriter(socket.getOutputStream());
+            writer = new BufferedWriter(o);
+
+            InputStreamReader r = new InputStreamReader(socket.getInputStream());
+            reader = new BufferedReader(r);
+
+            writer.write(senderId + "\n");
+            writer.flush();
+
+            Thread serverListener = new Thread() {
+                @Override
+                public void run() {
+                    while (true) {
+                        try {
+                            String data = reader.readLine() + "\n";
+                            System.out.println(data);
+
+//                                if (data.contains("##close")){
+//                                    // close connection
+//                                }
+
+                        } catch (SocketException se) {
+                            se.printStackTrace();
+                            break;
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            };
+            serverListener.start();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    void sendThroughNetwork(MessageInfo info) {
+
+//        try {
+//            writer.write(info.messageText + "\n");
+//            writer.flush();
+
+            DBUtil util = new DBUtil();
+            boolean status = util.writeMessageInDatabase(info);
+            System.out.println("Message send status" + status);
+
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
     }
 
