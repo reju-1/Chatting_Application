@@ -108,7 +108,25 @@ public class HomeController implements Initializable {
 
         // message loading
         DBUtil util = new DBUtil();
-        ArrayList<MessageInfo> info = util.getMessages(senderId,receiverId);
+        ArrayList<MessageInfo> messages = util.getMessages(senderId, receiverId);
+
+        for (MessageInfo message : messages) {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("message.fxml"));
+
+            try {
+                HBox hBox = fxmlLoader.load();
+
+                Message msg = fxmlLoader.getController();
+                msg.generateMessage(message);
+                messageVbox.getChildren().add(hBox);
+                sendThroughNetwork(message);
+
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
 
     }
@@ -229,9 +247,9 @@ public class HomeController implements Initializable {
 //            writer.write(info.messageText + "\n");
 //            writer.flush();
 
-            DBUtil util = new DBUtil();
-            boolean status = util.writeMessageInDatabase(info);
-            System.out.println("Message send status" + status);
+        DBUtil util = new DBUtil();
+        boolean status = util.writeMessageInDatabase(info);
+        System.out.println("Message send status" + status);
 
 //        } catch (IOException e) {
 //            e.printStackTrace();

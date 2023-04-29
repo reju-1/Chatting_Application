@@ -2,6 +2,7 @@ module com.example.chat {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
+    requires javafx.web;
 
 
     opens com.example.chat to javafx.fxml;
