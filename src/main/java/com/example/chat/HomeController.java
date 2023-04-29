@@ -36,10 +36,10 @@ public class HomeController implements Initializable {
     BufferedReader reader;
     BufferedWriter writer;
 
-    String senderId;
-    String receiverId;
+    static String senderId = "01872088111";
+    static String senderName;
 
-    String senderName;
+    String receiverId;
     String receiverName;
 
     public static final Map<String, Scene> scene = new HashMap<>();
@@ -60,11 +60,13 @@ public class HomeController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
 
-//        DBUtil util = new DBUtil();
-//        List<ContactInfo> l = util.getFriendList(senderId);
-     //   connectToServer(); // creating socket
+        DBUtil util = new DBUtil();
+        List<ContactInfo> l = util.getFriendList(senderId);
+//        connectToServer(); // creating socket
+//        List<ContactInfo> l = getContactInfo();
 
-        List<ContactInfo> l = getContactInfo();
+        System.out.println("from initialize methode => sender id: " + senderId + " Name : " + senderName);
+
         for (int i = 0; i < l.size(); i++) {
 
             FXMLLoader fxmlLoader = new FXMLLoader();
@@ -103,13 +105,11 @@ public class HomeController implements Initializable {
 
     @FXML
     void selectedContact() {
-        name.setText(receiverName);
-        System.out.println(receiverName);
-        System.out.println(receiverId);
 
-        // message loading
+        name.setText(receiverName);
+        System.out.println("from selectContact=> senderId:" + senderId + " Name:" + senderName + " ReceiverId:" + receiverId + " ReceiverName:" + receiverName);
         DBUtil util = new DBUtil();
-        ArrayList<MessageInfo> messages = util.getMessages(senderId, receiverId);
+        ArrayList<MessageInfo> messages = util.getMessages(senderId, senderName, receiverId, receiverName);
 
         for (MessageInfo message : messages) {
             FXMLLoader fxmlLoader = new FXMLLoader();
@@ -121,7 +121,7 @@ public class HomeController implements Initializable {
                 Message msg = fxmlLoader.getController();
                 msg.generateMessage(message);
                 messageVbox.getChildren().add(hBox);
-                sendThroughNetwork(message);
+                //sendThroughNetwork(message);
 
 
             } catch (IOException e) {
@@ -140,7 +140,7 @@ public class HomeController implements Initializable {
 
         if (text.length() != 0) {
 
-            MessageInfo messageInfo = new MessageInfo(senderId, senderName, receiverId, receiverName, text);
+            MessageInfo messageInfo = new MessageInfo( senderId, receiverName,receiverId, senderName, text);
 
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("message.fxml"));
@@ -281,7 +281,7 @@ public class HomeController implements Initializable {
                                     msg.generateMessage(messageInfo);
                                     messageVbox.getChildren().add(hBox);
 
-                                    sendThroughNetwork(messageInfo);
+//                                    sendThroughNetwork(messageInfo);
 
 
                                 } catch (IOException e) {
@@ -313,25 +313,25 @@ public class HomeController implements Initializable {
 
     void sendThroughNetwork(MessageInfo info) {
 
-        try {
-            String senderId = info.senderId;
-            String senderName = info.senderName;
-            String receiverId = info.receiverId;
-            String receiverName = info.receiverName;
-            String time = info.time;
-            String message = info.messageText;
+//        try {
+        String senderId = info.senderId;
+        String senderName = info.senderName;
+        String receiverId = info.receiverId;
+        String receiverName = info.receiverName;
+        String time = info.time;
+        String message = info.messageText;
 
-            String messagesToken = senderId + "##" + senderName + "##" + receiverId + "##" + receiverName + "##" + time + "##" + message;
-            writer.write(messagesToken + "\n");
-            writer.flush();
+        String messagesToken = senderId + "##" + senderName + "##" + receiverId + "##" + receiverName + "##" + time + "##" + message;
+//            writer.write(messagesToken + "\n");
+//            writer.flush();
 
-            DBUtil util = new DBUtil();
-            boolean status = util.writeMessageInDatabase(info);
-            System.out.println("Message send status" + status);
+        DBUtil util = new DBUtil();
+        boolean status = util.writeMessageInDatabase(info);
+        System.out.println("Message send status" + status);
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
     }
 

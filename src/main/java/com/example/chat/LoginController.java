@@ -45,6 +45,7 @@ public class LoginController {
                 HomeController hc = fxmlLoader.getController();
                 hc.senderId = number;
                 hc.senderName = userName;
+
                 stage.setTitle("Home");
                 stage.setScene(scene);
                 stage.setResizable(false);

@@ -20,7 +20,7 @@ public class MessageInfo {
         this.receiverName = receiverName;
         this.messageText = messageText;
 
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        DateFormat dateFormat = new SimpleDateFormat("ss:mm:HH  dd/MM/yyyy");
         Date date = new Date();
         this.time = dateFormat.format(date);
     }
@@ -33,6 +33,13 @@ public class MessageInfo {
         this.receiverName = receiverName;
         this.messageText = messageText;
 
+        this.time = time;
+    }
+
+    public MessageInfo(String senderName, String receiverName,String time ,String messageText) {
+        this.senderName = senderName;
+        this.receiverName = receiverName;
+        this.messageText = messageText;
         this.time = time;
     }
 

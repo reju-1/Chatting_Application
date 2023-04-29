@@ -40,7 +40,7 @@ public class DBUtil {
         }
     }
 
-    public List<ContactInfo> getFriendList(String id) { // find why result set is empty
+    public List<ContactInfo> getFriendList(String id) {
 
         List<ContactInfo> list = new ArrayList<>();
 
@@ -50,16 +50,14 @@ public class DBUtil {
             String sql = "SELECT * FROM `friends` WHERE `user_number` = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, id);
-
             ResultSet rs = stmt.executeQuery();
-            System.out.println(rs.next());
 
             while (rs.next()) {
-                String number = rs.getString(1);
-                String name = rs.getString(2);
-                System.out.println(name);
-
+                String name = rs.getString("friend_name");
+                String number = rs.getString("friend_number");
+                list.add(new ContactInfo(number, name));
             }
+
             rs.close();
             stmt.close();
             conn.close();
@@ -91,24 +89,33 @@ public class DBUtil {
         }
     }
 
-    public ArrayList<MessageInfo> getMessages(String senderId, String receiverId) {
+    public ArrayList<MessageInfo> getMessages(String senderId, String senderName, String receiverId, String receiverName) {
         ArrayList<MessageInfo> messages = new ArrayList<>();
         try {
+
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/Chat_DB", "root", "");
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM `messages` WHERE sender = ? AND receiver = ?");
+            //  PreparedStatement stmt = conn.prepareStatement("SELECT time, message_text FROM `messages` WHERE sender = ? AND receiver = ?");
+            PreparedStatement stmt = conn.prepareStatement("SELECT sender, receiver,time, message_text FROM `messages` WHERE sender = ? AND receiver = ? or sender = ? AND receiver = ?");
             stmt.setString(1, senderId);
             stmt.setString(2, receiverId);
+
+            stmt.setString(3, receiverId);
+            stmt.setString(4, senderId);
             ResultSet rs = stmt.executeQuery();
 
 
             while (rs.next()) {
-                String sName = rs.getString(1);
-                String sId = rs.getString(2);
-                String rName = rs.getString(3);
-                String rId = rs.getString(4);
-                String time = rs.getString(5);
-                String message = rs.getString(6);
-                MessageInfo info = new MessageInfo(sName, sId, rName, rId, time, message);
+                String sender = rs.getString("sender");
+                String receiver = rs.getString("receiver");
+                String time = rs.getString("time");
+                String message = rs.getString("message_text");
+
+                MessageInfo info;
+                if (sender.equals(senderId)) {
+                    info = new MessageInfo(receiverName, senderName, time, message);
+                } else {
+                    info = new MessageInfo(senderName, receiverName, time, message);
+                }
                 messages.add(info);
 
             }
