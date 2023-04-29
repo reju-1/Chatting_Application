@@ -13,20 +13,18 @@ public class ClientHandler implements Runnable {
     BufferedReader reader;
     BufferedWriter writer;
 
-    public static final ArrayList<ClientHandler> clients = new ArrayList<>();
-
     public static final Map<String,ClientHandler> clientList = new HashMap<>();
 
     ClientHandler(Socket sc) {
         try {
             InputStreamReader r = new InputStreamReader(sc.getInputStream());
             reader = new BufferedReader(r);
-
             OutputStreamWriter o = new OutputStreamWriter(sc.getOutputStream());
             writer = new BufferedWriter(o);
 
             id = reader.readLine();
-            clients.add(this);
+
+            clientList.put(id,this);
             System.out.println(id + " is Connected");
 
 
@@ -41,13 +39,22 @@ public class ClientHandler implements Runnable {
         while (true) {
 
             try {
-                String data = reader.readLine();
-                data = id + " : " + data;
+                String messageToken = reader.readLine();
 
-                synchronized (clients) {
-                    for (ClientHandler ch : clients) {
-                        ch.writer.write(data + "\n");
-                        ch.writer.flush();
+                String[] parts = messageToken.split("##");
+
+                String senderId = parts[0];
+                String senderName = parts[1];
+                String receiverId = parts[2];
+                String receiverName = parts[3];
+                String time = parts[4];
+                String message = parts[5] ;
+
+                synchronized (clientList) {
+                    if (clientList.containsKey(receiverId)){
+                        ClientHandler clientHandler = clientList.get(receiverId);
+                        clientHandler.writer.write(messageToken+"\n");
+                        clientHandler.writer.flush();
                     }
                 }
 

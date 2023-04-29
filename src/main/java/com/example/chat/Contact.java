@@ -36,7 +36,7 @@ public class Contact {
     void selectContract(MouseEvent event) {
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("google.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("home.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene scene = new Scene(loader.load());
 

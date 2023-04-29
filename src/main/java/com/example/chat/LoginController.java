@@ -33,7 +33,7 @@ public class LoginController {
         if (pass.length() >= 4 && number.length() == 11 && number.matches("\\d+") || true) {
             String userName = util.logIn(number, pass);
             if (userName.length() != 0 || true) {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("google.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("home.fxml"));
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 Scene scene = null;
                 try {
