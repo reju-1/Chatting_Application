@@ -3,6 +3,7 @@ package com.example.chat;
 import com.example.chat.model.ContactInfo;
 import com.example.chat.model.DBUtil;
 import com.example.chat.model.MessageInfo;
+import com.example.chat.model.UserData;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -36,7 +37,7 @@ public class HomeController implements Initializable {
     BufferedReader reader;
     BufferedWriter writer;
 
-    static String senderId = "01872088111";
+    static String senderId;
     static String senderName;
 
     String receiverId;
@@ -60,12 +61,12 @@ public class HomeController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
 
+        senderId = UserData.id;
+        senderName = UserData.name;
+
         DBUtil util = new DBUtil();
         List<ContactInfo> l = util.getFriendList(senderId);
 //        connectToServer(); // creating socket
-//        List<ContactInfo> l = getContactInfo();
-
-        System.out.println("from initialize methode => sender id: " + senderId + " Name : " + senderName);
 
         for (int i = 0; i < l.size(); i++) {
 
@@ -88,26 +89,10 @@ public class HomeController implements Initializable {
     }
 
 
-    // database Query
-    private List<ContactInfo> getContactInfo() {
-
-        List<ContactInfo> info = new ArrayList<>();
-
-        info.add(new ContactInfo("111", "Reju", "xyz.png"));
-        info.add(new ContactInfo("8465132", "Refat", "xyz.png"));
-        info.add(new ContactInfo("222", "Haydar", "xyz.png"));
-        info.add(new ContactInfo("0187", "asif", "xyz.png"));
-        info.add(new ContactInfo("4165325", "Refat", "xyz.png"));
-
-
-        return info;
-    }
-
     @FXML
     void selectedContact() {
 
         name.setText(receiverName);
-        System.out.println("from selectContact=> senderId:" + senderId + " Name:" + senderName + " ReceiverId:" + receiverId + " ReceiverName:" + receiverName);
         DBUtil util = new DBUtil();
         ArrayList<MessageInfo> messages = util.getMessages(senderId, senderName, receiverId, receiverName);
 

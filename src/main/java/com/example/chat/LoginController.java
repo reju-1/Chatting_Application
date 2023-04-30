@@ -1,6 +1,7 @@
 package com.example.chat;
 
 import com.example.chat.model.DBUtil;
+import com.example.chat.model.UserData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -33,19 +34,17 @@ public class LoginController {
         if (pass.length() >= 4 && number.length() == 11 && number.matches("\\d+") || true) {
             String userName = util.logIn(number, pass);
             if (userName.length() != 0 || true) {
+                UserData.name = userName;
+                UserData.id = number;
+
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("home.fxml"));
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                Scene scene = null;
+                Scene scene;
                 try {
                     scene = new Scene(fxmlLoader.load());
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-
-                HomeController hc = fxmlLoader.getController();
-                hc.senderId = number;
-                hc.senderName = userName;
-
                 stage.setTitle("Home");
                 stage.setScene(scene);
                 stage.setResizable(false);
