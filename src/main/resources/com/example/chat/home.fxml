@@ -12,71 +12,71 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="875.0" style="-fx-background-color: #282e33;" stylesheets="@stylesheet/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.chat.HomeController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="950.0" style="-fx-background-color: #282e33;" stylesheets="@stylesheet/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.chat.HomeController">
    <children>
-      <Pane prefHeight="675.0" prefWidth="63.0" style="-fx-background-color: #27323A;">
+      <Pane prefHeight="850.0" prefWidth="72.0" style="-fx-background-color: #27323A;">
          <children>
-            <ImageView fitHeight="50.0" fitWidth="42.0" layoutX="11.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true" styleClass="image-hover">
+            <ImageView fitHeight="50.0" fitWidth="42.0" layoutX="15.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true" styleClass="image-hover">
                <image>
                   <Image url="@images/chat.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="50.0" fitWidth="42.0" layoutX="11.0" layoutY="161.0" onMouseClicked="#addFriend" pickOnBounds="true" preserveRatio="true" styleClass="image-hover">
+            <ImageView fitHeight="50.0" fitWidth="42.0" layoutX="15.0" layoutY="161.0" onMouseClicked="#addFriend" pickOnBounds="true" preserveRatio="true" styleClass="image-hover">
                <image>
                   <Image url="@images/friends.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="50.0" fitWidth="42.0" layoutX="11.0" layoutY="239.0" onMouseClicked="#webView" pickOnBounds="true" preserveRatio="true" styleClass="image-hover">
+            <ImageView fitHeight="50.0" fitWidth="42.0" layoutX="15.0" layoutY="239.0" onMouseClicked="#webView" pickOnBounds="true" preserveRatio="true" styleClass="image-hover">
                <image>
                   <Image url="@images/internet.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="50.0" fitWidth="42.0" layoutX="11.0" layoutY="595.0" onMouseClicked="#logOut" pickOnBounds="true" preserveRatio="true" styleClass="image-hover">
+            <ImageView fitHeight="50.0" fitWidth="42.0" layoutX="15.0" layoutY="671.0" onMouseClicked="#logOut" pickOnBounds="true" preserveRatio="true" styleClass="image-hover">
                <image>
                   <Image url="@images/logout.jpg" />
                </image>
             </ImageView>
-            <ImageView fitHeight="48.0" fitWidth="42.0" layoutX="11.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" styleClass="image-hover">
+            <ImageView fitHeight="48.0" fitWidth="42.0" layoutX="15.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" styleClass="image-hover">
                <image>
                   <Image url="@images/menu-bar.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="50.0" fitWidth="42.0" layoutX="11.0" layoutY="317.0" pickOnBounds="true" preserveRatio="true" styleClass="image-hover">
+            <ImageView fitHeight="50.0" fitWidth="42.0" layoutX="15.0" layoutY="317.0" pickOnBounds="true" preserveRatio="true" styleClass="image-hover">
                <image>
                   <Image url="@images/settings.png" />
                </image>
             </ImageView>
          </children>
       </Pane>
-      <AnchorPane prefHeight="675.0" prefWidth="355.0" style="-fx-background-color: #282e33;">
+      <AnchorPane prefHeight="801.0" prefWidth="395.0" style="-fx-background-color: #282e33;">
          <children>
-            <TextField layoutX="14.0" layoutY="23.0" prefHeight="32.0" prefWidth="274.0" promptText="Search">
+            <TextField layoutX="21.0" layoutY="23.0" prefHeight="32.0" prefWidth="285.0" promptText="Search">
                <font>
                   <Font size="17.0" />
                </font>
             </TextField>
-            <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="295.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true" styleClass="image-hover">
+            <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="326.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" styleClass="image-hover">
                <image>
                   <Image url="@images/search.png" />
                </image>
             </ImageView>
-            <ScrollPane layoutY="70.0" prefHeight="612.0" prefWidth="348.0" style="-fx-background-color: #27323A;">
+            <ScrollPane layoutY="70.0" prefHeight="682.0" prefWidth="395.0" style="-fx-background-color: #27323A;">
                <content>
-                  <VBox fx:id="contactVbox" prefHeight="605.0" prefWidth="346.0" spacing="2.0" style="-fx-background-color: #435055;" VBox.vgrow="ALWAYS" />
+                  <VBox fx:id="contactVbox" prefHeight="680.0" prefWidth="393.0" spacing="2.0" style="-fx-background-color: #435055;" VBox.vgrow="ALWAYS" />
                </content>
             </ScrollPane>
          </children>
       </AnchorPane>
-      <VBox prefHeight="675.0" prefWidth="441.0" style="-fx-background-color: #27323A;">
+      <VBox prefHeight="850.0" prefWidth="482.0" style="-fx-background-color: #27323A;">
          <children>
             <Pane prefHeight="70.0" prefWidth="299.0" style="-fx-background-color: #27323A;">
                <children>
-                  <ImageView fitHeight="50.0" fitWidth="42.0" layoutX="14.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true" styleClass="image-hover">
+                  <ImageView fitHeight="50.0" fitWidth="42.0" layoutX="38.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true" styleClass="image-hover">
                      <image>
                         <Image url="@images/prifile.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="35.0" fitWidth="30.0" layoutX="368.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true" styleClass="image-hover">
+                  <ImageView fitHeight="35.0" fitWidth="30.0" layoutX="408.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true" styleClass="image-hover">
                      <image>
                         <Image url="@images/information.png" />
                      </image>
@@ -90,14 +90,14 @@
             </Pane>
             <ScrollPane prefHeight="535.0" prefWidth="355.0" style="-fx-background-color: #27323A;" vvalue="1.0" VBox.vgrow="ALWAYS">
                <content>
-                  <VBox fx:id="messageVbox" alignment="BOTTOM_LEFT" prefHeight="528.0" prefWidth="440.0" spacing="5.0" style="-fx-background-color: #353a3a;" />
+                  <VBox fx:id="messageVbox" alignment="BOTTOM_LEFT" prefHeight="596.0" prefWidth="480.0" spacing="5.0" style="-fx-background-color: #353a3a;" />
                </content>
             </ScrollPane>
             <HBox prefHeight="81.0" prefWidth="442.0" style="-fx-background-color: #27323A;">
                <children>
-                  <TextField fx:id="textInfo" onKeyPressed="#onEnter" prefHeight="45.0" prefWidth="376.0" promptText="Write message">
+                  <TextField fx:id="textInfo" onKeyPressed="#onEnter" prefHeight="45.0" prefWidth="358.0" promptText="Write message">
                      <HBox.margin>
-                        <Insets left="5.0" top="10.0" />
+                        <Insets left="20.0" top="15.0" />
                      </HBox.margin>
                      <font>
                         <Font size="15.0" />
@@ -108,7 +108,7 @@
                         <Image url="@images/send-message.png" />
                      </image>
                      <HBox.margin>
-                        <Insets left="18.0" top="12.0" />
+                        <Insets left="25.0" top="25.0" />
                      </HBox.margin>
                   </ImageView>
                </children>

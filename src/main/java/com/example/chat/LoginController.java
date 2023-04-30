@@ -45,7 +45,7 @@ public class LoginController {
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-                stage.setTitle("Hi " + userName + "!");
+                stage.setTitle("Hi " + userName + " !");
                 stage.setScene(scene);
                 stage.setResizable(false);
                 stage.show();
