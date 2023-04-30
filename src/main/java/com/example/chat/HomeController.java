@@ -39,6 +39,7 @@ public class HomeController implements Initializable {
 
     static String senderId;
     static String senderName;
+    static boolean isConnected;
 
     String receiverId;
     String receiverName;
@@ -66,7 +67,11 @@ public class HomeController implements Initializable {
 
         DBUtil util = new DBUtil();
         List<ContactInfo> l = util.getFriendList(senderId);
-        connectToServer(); // creating socket
+
+        if (!isConnected){
+            connectToServer();
+            isConnected = true;
+        }
 
         for (int i = 0; i < l.size(); i++) {
 
@@ -106,8 +111,6 @@ public class HomeController implements Initializable {
                 Message msg = fxmlLoader.getController();
                 msg.generateMessage(message);
                 messageVbox.getChildren().add(hBox);
-//                sendThroughNetwork(message);
-
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -125,7 +128,7 @@ public class HomeController implements Initializable {
 
         if (text.length() != 0) {
 
-            MessageInfo messageInfo = new MessageInfo( senderId, receiverName,receiverId, senderName, text);
+            MessageInfo messageInfo = new MessageInfo(senderId, receiverName, receiverId, senderName, text);
 
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("message.fxml"));
@@ -223,7 +226,7 @@ public class HomeController implements Initializable {
 
     }
 
-    void connectToServer() {
+    void connectToServer() { // try runnable interface
         try {
             Socket socket = new Socket("localhost", 6000);
 
@@ -242,19 +245,22 @@ public class HomeController implements Initializable {
                     while (true) {
                         try {
                             String messageToken = reader.readLine() + "\n";
-                            System.out.println(messageToken +"from run method");
-                            String[] parts = messageToken.split("##");
 
-                            String senderId = parts[0];
+                            String[] parts = messageToken.split("##");
+                            String senderIdx = parts[0];
                             String senderName = parts[1];
                             String receiverId = parts[2];
                             String receiverName = parts[3];
                             String time = parts[4];
                             String message = parts[5];
 
-                            if (name.getText().equals(senderName)) {
+                            System.out.println("sender Name : " + senderName);
 
-                                MessageInfo messageInfo = new MessageInfo(senderId, senderName, receiverId, receiverName, time, message);
+                            System.out.println();
+                            if (senderId.equals(receiverId)) {
+                                System.out.println("in the if statment");
+
+                                MessageInfo messageInfo = new MessageInfo(senderIdx, senderName, receiverId, receiverName, time, message);
 
                                 FXMLLoader fxmlLoader = new FXMLLoader();
                                 fxmlLoader.setLocation(getClass().getResource("message.fxml"));
@@ -265,20 +271,12 @@ public class HomeController implements Initializable {
                                     Message msg = fxmlLoader.getController();
                                     msg.generateMessage(messageInfo);
                                     messageVbox.getChildren().add(hBox);
-                                    System.out.println();
-
-//                                    sendThroughNetwork(messageInfo);
-
 
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                 }
 
                             }
-
-//                                if (data.contains("##close")){
-//                                    // close connection
-//                                }
 
                         } catch (SocketException se) {
                             se.printStackTrace();
@@ -300,20 +298,20 @@ public class HomeController implements Initializable {
     void sendThroughNetwork(MessageInfo info) {
 
         try {
-        String senderId = info.senderId;
-        String senderName = info.senderName;
-        String receiverId = info.receiverId;
-        String receiverName = info.receiverName;
-        String time = info.time;
-        String message = info.messageText;
+            String senderId = info.senderId;
+            String senderName = info.senderName;
+            String receiverId = info.receiverId;
+            String receiverName = info.receiverName;
+            String time = info.time;
+            String message = info.messageText;
 
-        String messagesToken = senderId + "##" + senderName + "##" + receiverId + "##" + receiverName + "##" + time + "##" + message;
+            String messagesToken = senderId + "##" + senderName + "##" + receiverId + "##" + receiverName + "##" + time + "##" + message;
             writer.write(messagesToken + "\n");
             writer.flush();
 
-        DBUtil util = new DBUtil();
-        boolean status = util.writeMessageInDatabase(info);
-        System.out.println("Message send status" + status);
+            DBUtil util = new DBUtil();
+            boolean status = util.writeMessageInDatabase(info);
+            System.out.println("Message send status" + status);
 
         } catch (IOException e) {
             e.printStackTrace();
