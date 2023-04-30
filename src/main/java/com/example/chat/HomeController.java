@@ -66,7 +66,7 @@ public class HomeController implements Initializable {
 
         DBUtil util = new DBUtil();
         List<ContactInfo> l = util.getFriendList(senderId);
-//        connectToServer(); // creating socket
+        connectToServer(); // creating socket
 
         for (int i = 0; i < l.size(); i++) {
 
@@ -106,7 +106,7 @@ public class HomeController implements Initializable {
                 Message msg = fxmlLoader.getController();
                 msg.generateMessage(message);
                 messageVbox.getChildren().add(hBox);
-                //sendThroughNetwork(message);
+//                sendThroughNetwork(message);
 
 
             } catch (IOException e) {
@@ -242,7 +242,7 @@ public class HomeController implements Initializable {
                     while (true) {
                         try {
                             String messageToken = reader.readLine() + "\n";
-                            System.out.println(messageToken);
+                            System.out.println(messageToken +"from run method");
                             String[] parts = messageToken.split("##");
 
                             String senderId = parts[0];
@@ -265,6 +265,7 @@ public class HomeController implements Initializable {
                                     Message msg = fxmlLoader.getController();
                                     msg.generateMessage(messageInfo);
                                     messageVbox.getChildren().add(hBox);
+                                    System.out.println();
 
 //                                    sendThroughNetwork(messageInfo);
 
@@ -298,7 +299,7 @@ public class HomeController implements Initializable {
 
     void sendThroughNetwork(MessageInfo info) {
 
-//        try {
+        try {
         String senderId = info.senderId;
         String senderName = info.senderName;
         String receiverId = info.receiverId;
@@ -307,16 +308,16 @@ public class HomeController implements Initializable {
         String message = info.messageText;
 
         String messagesToken = senderId + "##" + senderName + "##" + receiverId + "##" + receiverName + "##" + time + "##" + message;
-//            writer.write(messagesToken + "\n");
-//            writer.flush();
+            writer.write(messagesToken + "\n");
+            writer.flush();
 
         DBUtil util = new DBUtil();
         boolean status = util.writeMessageInDatabase(info);
         System.out.println("Message send status" + status);
 
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
