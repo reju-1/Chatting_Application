@@ -71,7 +71,7 @@
          <children>
             <Pane prefHeight="70.0" prefWidth="299.0" style="-fx-background-color: #27323A;">
                <children>
-                  <ImageView fitHeight="50.0" fitWidth="42.0" layoutX="38.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true" styleClass="image-hover">
+                  <ImageView fitHeight="50.0" fitWidth="42.0" layoutX="21.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true" styleClass="image-hover">
                      <image>
                         <Image url="@images/prifile.png" />
                      </image>

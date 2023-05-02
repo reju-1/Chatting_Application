@@ -14,8 +14,11 @@ public class DBUtil {
             stmt.setString(1, number);
             stmt.setString(2, password);
             ResultSet rs = stmt.executeQuery();
-            rs.next();
-            return rs.getString("name");
+
+            if (rs.next()) {
+                return rs.getString("name");
+            } else return "";
+
         } catch (SQLException e) {
             e.printStackTrace();
             return "";

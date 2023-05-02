@@ -31,9 +31,9 @@ public class LoginController {
 
         DBUtil util = new DBUtil();
 
-        if (pass.length() >= 4 && number.length() == 11 && number.matches("\\d+") || true) {
+        if (pass.length() >= 4 && number.length() == 11 && number.matches("\\d+") ) {
             String userName = util.logIn(number, pass);
-            if (userName.length() != 0 || true) {
+            if (userName.length() != 0 ) {
                 UserData.name = userName;
                 UserData.id = number;
 

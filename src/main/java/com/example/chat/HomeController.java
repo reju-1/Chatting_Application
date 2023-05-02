@@ -34,8 +34,8 @@ import java.util.Date;
 
 public class HomeController implements Initializable {
 
-    BufferedReader reader;
-    BufferedWriter writer;
+    static BufferedReader reader;
+    static BufferedWriter writer;
 
     static String senderId;
     static String senderName;
@@ -228,7 +228,7 @@ public class HomeController implements Initializable {
 
     void connectToServer() { // try runnable interface
         try {
-            Socket socket = new Socket("localhost", 6000);
+            Socket socket = new Socket("127.0.0.1", 6000);
 
             OutputStreamWriter o = new OutputStreamWriter(socket.getOutputStream());
             writer = new BufferedWriter(o);
@@ -258,7 +258,7 @@ public class HomeController implements Initializable {
 
                             System.out.println();
                             if (senderId.equals(receiverId)) {
-                                System.out.println("in the if statment");
+                                System.out.println("Token is received : "+messageToken);
 
                                 MessageInfo messageInfo = new MessageInfo(senderIdx, senderName, receiverId, receiverName, time, message);
 
